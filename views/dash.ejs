@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+        <!-- 검색엔진 -->
+        <meta name="google-site-verification" content="sqK53XnfdeWZ9a7dINPGxzW9LiMwa4TS0PfKW9nGYiQ" />
+        
+        <!-- 링크 임베드 -->
+        <meta name="theme-color" content="#131723">
+        <meta name="description" content="2021 발로란트 최고의 디스코드 봇 VALO">
+        <meta property="og:title" content="VALO 봇">
+        <meta property="og:description" content="2021 발로란트 최고의 디스코드 봇 VALO">
+
+    <title>VALO BOT</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./image/profile.jpg">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </head>
+  <header>
+   <!-- 상단 메뉴바 -->
+  <div class="wrapper">
+      <h1 style="color: white;">VALO</h1>
+        <nav>
+          <ul class="menu">
+            <li><a href="/">홈</a></li>
+            <li><a href="/#menutag">메뉴</a></li>
+            <li><a href="/dash">대시보드</a></li>
+          </ul>
+        </nav>
+    </div>
+  </header>
+
+  <body>
+<!-- 대시보드 -->
+<div class="main">
+<img src="./image/profile.jpg" alt="BOT Image" class="img-circle" style="vertical-align:top;">
+  <h2 class="main_text" style="font-size:23px;">VALO BOT <% if(status == "online") { %> <span class="badge badge-secondary" style="background-color: hsl(139, calc(var(--saturation-factor, 1) * 47.3%), 43.9%);">Online</span> <% } else { %> <span class="badge badge-secondary" style="background-color: hsl(214, calc(var(--saturation-factor, 1) * 9.9%), 50.4%);">Offline</span> <% } %></h2>
+  <!-- <h3 style="color:white;">현재 접속중인 서버 : <%= server %></h3>
+  <h4 style="color:white;">현재 사용중인 유저 : <%= user %></h4> -->
+<ul>
+  <li>
+<h3 class="num" data-num-ani-slow-point="0.8" style="color:white;" data-num-ani-slow-add-interval="10" data-num-ani-interval="20" data-num-ani-stride="1" data-num-ani-start="0" data-num-ani-end=<%= server %></h3>
+<h4 style=" color:white;">봇이 현재 접속중인 서버 수</h4>
+  </li>
+
+  <li>
+    <h3 class="num" data-num-ani-slow-point="0.8" style="color:white;" data-num-ani-slow-add-interval="10" data-num-ani-interval="5" data-num-ani-stride="10" data-num-ani-start="0" data-num-ani-end=<%= user %></h3>
+<h4 style="text-align:center; color:white;">봇이 현재 사용중인 유저 수</h4>
+</li>
+</ul>
+  <div class="col-md-6 .col-md-offset-6"id="canvas">
+    <canvas id="myChart"></canvas>
+    <span style="color:white"> DISCORD VALORANT BOT SERVER CHART</span>
+    </div>
+
+  <div class="col-md-6 .col-md-offset-6">
+  <canvas id="myChartTwo"></canvas>
+  <span style="color:white"> DISCORD VALORANT BOT USER CHART</span>
+  </div> 
+
+<script>
+var ctx = document.getElementById('myChart').getContext('2d'); 
+var chart = new Chart(ctx, { 
+  // 챠트 종류를 선택 
+  type: 'bar',
+  // 챠트를 그릴 데이타 
+  data: { 
+    labels: ['SERVER'], 
+    datasets: [{ 
+      label: '봇 현황', 
+      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      borderColor: 'red', 
+      data: [<%= server%>],
+      borderWidth: 0.1
+    }] }, 
+      // 옵션 
+      options: {}, 
+      legend: {
+        display: false
+      }
+    });
+
+    var ctx1 = document.getElementById('myChartTwo').getContext('2d'); 
+var chart1 = new Chart(ctx1, { 
+  // 챠트 종류를 선택 
+  type: 'bar',
+  // 챠트를 그릴 데이타 
+  data: { 
+    labels: ['USER'], 
+    datasets: [{ 
+      label: '유저 현황', 
+      backgroundColor: 'rgba(255, 206, 86, 0.2)',
+      borderColor: 'red', 
+      data: [<%= user%>],
+      borderWidth: 0.1
+    }] }, 
+      // 옵션 
+      options: {}, 
+      legend: {
+        display: false
+      }
+    });
+
+    function NumAni__start(selector) {
+    $(selector).each(function(index, node) {
+        var $el = $(node);
+        
+        var start = parseInt($el.attr('data-num-ani-start'));
+        var interval = parseInt($el.attr('data-num-ani-interval'));
+
+        $el.attr('data-num-ani-interval-current', interval);
+
+        $el.text(start);
+
+        NumAni__increaseWon($el);
+    });
+}
+
+function NumAni__increaseWon($el) {
+    var current = parseInt($el.text());
+    var end = parseInt($el.attr('data-num-ani-end'));
+    var stride = parseInt($el.attr('data-num-ani-stride'));
+    var interval = parseInt($el.attr('data-num-ani-interval-current'));
+    var slowPoint = parseFloat($el.attr('data-num-ani-slow-point'))
+
+    if (current < end) {
+        if ( current > end * slowPoint ) {
+            interval += parseInt($el.attr('data-num-ani-slow-add-interval'));
+            if ( interval > 100 ) {
+                interval = 100;
+            }
+            $el.attr('data-num-ani-interval-current', interval);
+        }
+        
+        if ( current + stride > end ) {
+            $el.text(end);
+        }
+        else {
+            $el.text(current + stride);
+        }
+
+        setTimeout(function () {
+            NumAni__increaseWon($el);
+        }, interval);
+    }
+    else {
+        $el.addClass('num-action-done');
+    }
+}
+
+NumAni__start('.num');
+    </script>
+</div>
+
+
+    <!-- 사이트 노래 재생 -->
+  <div class="music">
+    <audio autoplay loop>
+      <source src="./music/main_music.mp3" type="audio/mp3">
+    </audio>
+  </div>
+
+
+    <script src="./script.js"></script>
+  </body>
+</html>

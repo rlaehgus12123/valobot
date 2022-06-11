@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image : url('./image/body/bg.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute; left: 0; right: 0; top: 0; bottom: 0;
+  z-index: 1;
+  text-align: center;
+  -webkit-animation: zoomin 5s ease-in;
+  animation: zoomin 5s ease-in;
+}
+
+.music {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        border:1px blue solid;
+}
+
+.main {
+  margin: 200px auto;
+}
+
+.main_text {
+  color: white;
+}
+
+
+/*reset*/
+* {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+
+/*commion*/
+ .wrapper {
+  width: 1170px;
+  margin: 0 auto;
+}
+.clearfix {
+  content: '';
+  display: block;
+  clear: both;
+} 
+
+/*header*/
+ header{
+  height: 75px; 
+  background-color: rgb(1, 22, 105); 
+  border: 1px solid #253342;
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  -ms-user-select: none; 
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  }
+
+h1 {
+  color: white;
+  line-height: 75px;
+  float: left;
+}
+.menu {
+float: right;
+}
+.menu li {
+float: left;
+}
+
+.menu a {
+  line-height: 75px;
+  color: white;
+  padding: 0 15px;
+  display: block;
+} 
+
+/* 봇 의 대한 설명 */
+.divider {
+  color: white;
+  padding: 0 100px;
+  -ms-user-select: none; 
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.sum_text {
+  color: white;
+  padding: 0 90px;
+  -ms-user-select: none; 
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* 대쉬보드 css */
+.dash {
+  margin: 200px auto;
+  color: white;
+  font-size: 23px;
+  -ms-user-select: none; 
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
