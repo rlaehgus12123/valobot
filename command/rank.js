@@ -1,50 +1,18 @@
 const { MessageEmbed } = require('discord.js');
 const { PREFIX } = require('../config.json')
 const { api_key } = require("../config.json")
-
 const data = require('./module/module.js')
+const client = require('../index.js')
 
-module.exports = {
-  name: "rank",
-  aliases: ["전적", "랭크"],
-  description: "발로란트의 전적을 검색합니다",
-  async execute(message) { 
-      try {
-        const regex = new RegExp('"[^"]+"', 'g');
-        var arguments = [];
-        var json = message.content
-        json.match(regex).forEach(element => {
-            if (!element) return;
-            return arguments.push(element.replace(/"/g, ''));
-        })
-
-        if(arguments.length >= 2) {
-          let embed = new MessageEmbed()
-          .setTitle(":x:  ERROR :x: ")
-          .setColor("RED")
-          .setDescription(`> "닉네임#태그" \n위의 양식에 따라 입력해주세요!`)
-          return message.reply({embeds: [embed]}).catch(console.error);
-        } else if(arguments[0] === undefined) {
-          let embed = new MessageEmbed()
-          .setTitle(":x:  ERROR :x: ")
-          .setColor("RED")
-          .setDescription('닉네임이나 태그가 입력되지 않았습니다!\n> "닉네임#태그" \n위의 양식에 따라 입력해주세요!')
-          return message.reply({embeds: [embed]}).catch(console.error);
-        } else if(arguments[0].includes("#") === false) {
-          let embed = new MessageEmbed()
-          .setTitle(":x:  ERROR :x: ")
-          .setColor("RED")
-          .setDescription('닉네임이나 태그가 입력되지 않았습니다!\n> "닉네임#태그" \n위의 양식에 따라 입력해주세요!')
-          return message.reply({embeds: [embed]}).catch(console.error);
-        }
-
-        let name_tag = await arguments[0].split("#")
+async function rank(nickname, int = require(Interaction)) {
+    try {
+        let name_tag = await nickname.split("#")
 
         let embed = new MessageEmbed()
-	.setColor("0x2F3136")
-	.setTitle("🔎**" + arguments[0] + "**님의 전적을 불러오는중...")
-	.setDescription("잠시 후 플레이어의 전적이 나옵니다!")
-        const search_embed = await message.channel.send({embeds: [embed]})
+        .setColor("0x2F3136")
+        .setTitle("🔎**" + nickname + "**님의 전적을 불러오는중...")
+        .setDescription("잠시 후 플레이어의 전적이 나옵니다!")
+        await int.reply({embeds: [embed]})
 
         let record_data = await data.data.rank(name_tag[0], name_tag[1])
 
@@ -77,5 +45,6 @@ module.exports = {
         .setDescription('닉네임이나 태그가 입력되지 않았습니다!\n> "닉네임#태그" \n위의 양식에 따라 입력해주세요!')
         return message.reply({embeds: [embed]}).catch(console.error);
       }
-    }
-  }
+}
+
+module.exports = { rank }
