@@ -1,4 +1,4 @@
-const { MessageEmbed, Client } = require("discord.js");
+const { MessageEmbed, Client, Interaction} = require("discord.js");
 const Discord = require('discord.js')
 const { PREFIX } = require('../config.json')
 const attachment = new Discord.MessageAttachment(`../Image/Help_Guide.png`, 'Help_Guide.png')

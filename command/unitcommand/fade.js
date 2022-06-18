@@ -1,11 +1,8 @@
 const { MessageEmbed } = require('discord.js')
 const { MessageAttachment: Attachment } = require('discord.js')
 
-module.exports = {
-    name: "fade",
-    aliases: ["페이드"],
-    description: "국적 : :flag_tr: 터키\n역할: 척후대\n능력: 악몽, 공포",
-    execute(message) {
+async function fade(int) {
+
         const unitskins = {
             C: {
              text: "가격: 250 | 충전량: 2\n추적귀를 장착합니다. 발사하면 직선으로 이동하는 추적귀를 내보냅니다. 추적귀는 전방 원뿔 시야 범위에 들어온 적이나 흔적에 고정되어 추격하며, 닿으면 적의 시야를 제한합니다. 발사 버튼을 길게 누르면 추적귀를 조준점 방향으로 움직일 수 있습니다.",
@@ -39,6 +36,9 @@ module.exports = {
         .addField(`${unitQ.emoji}**포박 (Q)**`, unitQ.text)
         .addField(`${unitE.emoji}**귀체 (E)**`, unitE.text)
         .addField(`${unitX.emoji}**황혼 (X)**`, unitX.text)
-        message.channel.send({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
-    }
+        int.reply({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+}
+
+module.exports = {
+    fade
 }

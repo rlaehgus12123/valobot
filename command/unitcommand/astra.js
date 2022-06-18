@@ -2,11 +2,7 @@ const { MessageEmbed } = require('discord.js')
 const Discord = require('discord.js')
 const { MessageAttachment: Attachment } = require('discord.js')
 
-module.exports = {
-    name: "astra",
-    aliases: ["아스트라"],
-    description: "국적 : :flag_gh: 가나\n역할: 전략가\n능력: 항성",
-    execute(message) {
+async function astra(int) {
 
         const unitskins = {
             C: {
@@ -41,7 +37,11 @@ module.exports = {
     .addField(`${unitQ.emoji}**신성 파동 (Q)**`, unitQ.text)
     .addField(`${unitE.emoji}**성운 (E)**`, unitE.text)
     .addField(`${unitX.emoji}**우주 장벽 (X)**`, unitX.text)
-    message.channel.send({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+    int.reply({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
 
-    }
+}
+
+    
+module.exports = {
+    astra
 }

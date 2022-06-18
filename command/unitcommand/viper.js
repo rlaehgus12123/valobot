@@ -2,11 +2,7 @@ const { MessageEmbed } = require('discord.js')
 const Discord = require('discord.js')
 const { MessageAttachment: Attachment } = require('discord.js')
 
-module.exports = {
-    name: "viper",
-    aliases: ["바이퍼"],
-    description: "국적 : :flag_us: 미국\n역할: 전략가\n능력: 독",
-    execute(message) {
+async function viper(int) {
 
         const unitskins = {
             C: {
@@ -41,7 +37,9 @@ module.exports = {
     .addField(`${unitQ.emoji}**독성 연기 (Q)**`, unitQ.text)
     .addField(`${unitE.emoji}**독성 장막 (E)**`, unitE.text)
     .addField(`${unitX.emoji}**독사의 구덩이 (X)**`, unitX.text)
-    message.channel.send({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+    int.reply({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+}
 
-    }
+module.exports = {
+    viper
 }

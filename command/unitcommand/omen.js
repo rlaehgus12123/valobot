@@ -2,11 +2,7 @@ const { MessageEmbed } = require('discord.js')
 const Discord = require('discord.js')
 const { MessageAttachment: Attachment } = require('discord.js')
 
-module.exports = {
-    name: "omen",
-    aliases: ["오멘"],
-    description: "국적 : :question: 불명\n역할: 전략가",
-    execute(message) {
+async function omen(int) {
 
         const unitskins = {
             C: {
@@ -41,7 +37,9 @@ module.exports = {
     .addField(`${unitQ.emoji}**피해망상 (Q)**`, unitQ.text)
     .addField(`${unitE.emoji}**어둠의 장막 (E)**`, unitE.text)
     .addField(`${unitX.emoji}**그림자 습격 (X)**`, unitX.text)
-    message.channel.send({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+    int.reply({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+}
 
-    }
+module.exports = {
+    omen
 }

@@ -2,11 +2,7 @@ const { MessageEmbed } = require('discord.js')
 const Discord = require('discord.js')
 const { MessageAttachment: Attachment } = require('discord.js')
 
-module.exports = {
-    name: "chamber",
-    aliases: ["체임버"],
-    description: "국적 : :flag_fr: 프랑스\n역할: 감시자\n능력: 차원 이동",
-    execute(message) {
+async function chamber(int) {
 
         const unitskins = {
             C: {
@@ -41,7 +37,10 @@ module.exports = {
     .addField(`${unitQ.emoji}**헤드헌터 (Q)**`, unitQ.text)
     .addField(`${unitE.emoji}**랑데부 (E)**`, unitE.text)
     .addField(`${unitX.emoji}**역작 (X)**`, unitX.text)
-    message.channel.send({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+    int.reply({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
 
-    }
+}
+
+module.exports = {
+    chamber
 }

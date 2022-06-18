@@ -2,11 +2,7 @@ const { MessageEmbed } = require('discord.js')
 const Discord = require('discord.js')
 const { MessageAttachment: Attachment } = require('discord.js')
 
-module.exports = {
-    name: "sage",
-    aliases: ["세이지"],
-    description: "국적 : :flag_cn: 중국\n역할: 감시자\n능력: 옥",
-    execute(message) {
+async function sage(int) {
 
         const unitskins = {
             C: {
@@ -41,7 +37,9 @@ module.exports = {
     .addField(`${unitQ.emoji}**둔화 구슬 (Q)**`, unitQ.text)
     .addField(`${unitE.emoji}**회복 구슬 (E)**`, unitE.text)
     .addField(`${unitX.emoji}**부활 (X)**`, unitX.text)
-    message.channel.send({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+    int.reply({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+}
 
-    }
+module.exports = {
+    sage
 }

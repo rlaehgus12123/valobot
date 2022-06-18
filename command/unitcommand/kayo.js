@@ -2,11 +2,7 @@ const { MessageEmbed } = require('discord.js')
 const Discord = require('discord.js')
 const { MessageAttachment: Attachment } = require('discord.js')
 
-module.exports = {
-    name: "kayo",
-    aliases: ["케이오"],
-    description: "국적 : 없음\n역할: 척후대\n능력: 전자",
-    execute(message) {
+async function kayo(int) {
 
         const unitskins = {
             C: {
@@ -41,7 +37,10 @@ module.exports = {
     .addField(`${unitQ.emoji}**플래시 (Q)**`, unitQ.text)
     .addField(`${unitE.emoji}**제로 (E)**`, unitE.text)
     .addField(`${unitX.emoji}**무력화 (X)**`, unitX.text)
-    message.channel.send({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+    int.reply({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
 
-    }
+}
+
+module.exports = {
+    kayo
 }

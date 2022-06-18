@@ -2,11 +2,7 @@ const { MessageEmbed } = require('discord.js')
 const Discord = require('discord.js')
 const { MessageAttachment: Attachment } = require('discord.js')
 
-module.exports = {
-    name: "sova",
-    aliases: ["소바"],
-    description: "국적 : :flag_ru: 러시아\n역할: 척후대\n능력: 전기",
-    execute(message) {
+async function sova(int) {
 
         const unitskins = {
             C: {
@@ -41,7 +37,9 @@ module.exports = {
     .addField(`${unitQ.emoji}**충격 화살 (Q)**`, unitQ.text)
     .addField(`${unitE.emoji}**장찰용 화살 (E)**`, unitE.text)
     .addField(`${unitX.emoji}**사냥꾼의 분노 (X)**`, unitX.text)
-    message.channel.send({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+    int.reply({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+}
 
-    }
+module.exports = {
+    sova
 }

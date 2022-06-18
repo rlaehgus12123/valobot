@@ -2,11 +2,7 @@ const { MessageEmbed } = require('discord.js')
 const Discord = require('discord.js')
 const { MessageAttachment: Attachment } = require('discord.js')
 
-module.exports = {
-    name: "skye",
-    aliases: ["스카이"],
-    description: "국적 : :flag_au: 오스트레일리아\n역할: 척후대\n능력: 동물",
-    execute(message) {
+async function skye(int) {
 
         const unitskins = {
             C: {
@@ -41,7 +37,9 @@ module.exports = {
     .addField(`${unitQ.emoji}**정찰자 (Q)**`, unitQ.text)
     .addField(`${unitE.emoji}**유도등 (E)**`, unitE.text)
     .addField(`${unitX.emoji}**추적자 (X)**`, unitX.text)
-    message.channel.send({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+    int.reply({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+}
 
-    }
+module.exports = {
+    skye
 }

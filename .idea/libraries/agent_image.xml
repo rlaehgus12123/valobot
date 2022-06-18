@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="agent-image">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/command/unitcommand/image/agent-image/agent-image.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

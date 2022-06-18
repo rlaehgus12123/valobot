@@ -1,11 +1,7 @@
 const { MessageEmbed } = require('discord.js')
 const { MessageAttachment: Attachment } = require('discord.js')
 
-module.exports = {
-    name: "jett",
-    aliases: ["제트"],
-    description: "국적 : :flag_kr: 대한민국\n역할: 타격대\n능력: 바람",
-    execute(message) {
+async function jett(int) {
 
         const unitskins = {
             C: {
@@ -40,7 +36,10 @@ module.exports = {
     .addField(`${unitQ.emoji}**상승 기류 (Q)**`, unitQ.text)
     .addField(`${unitE.emoji}**순풍 (E)**`, unitE.text)
     .addField(`${unitX.emoji}**칼날 폭풍 (X)**`, unitX.text)
-    message.channel.send({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+    int.reply({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
 
-    }
+}
+
+module.exports = {
+    jett
 }

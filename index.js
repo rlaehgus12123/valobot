@@ -19,6 +19,10 @@ const {rank} = require("./command/rank.js");
 const {imagecard} = require('./command/imagecard.js')
 const {help} = require('./command/help.js')
 const {invite} = require('./command/invite.js')
+const {map} = require('./command/map.js')
+const {weapon} = require('./command/weaponlist.js')
+const {unit} = require('./command/unit.js')
+const {patchnote} = require('./command/patchnote.js')
 
 client.on('ready', () => {
   console.log('VALO 디코봇 온라인! | 제작 : 욤 승혓')
@@ -28,7 +32,7 @@ client.on('ready', () => {
 client.on('interactionCreate', int => {
     if (!int.isCommand) return
 
-
+try {
     if(int.commandName === "도움말"){
         help(int)
     }
@@ -38,7 +42,7 @@ client.on('interactionCreate', int => {
     }
 
     if(int.commandName === "전적"){
-        nick = int.options.getString("닉네임");
+        let nick = int.options.getString("닉네임");
         // #이 입력되지 않았을때 대응
         if(nick.includes("#") === false) {
             let embed = new MessageEmbed()
@@ -51,7 +55,7 @@ client.on('interactionCreate', int => {
     }
 
     if(int.commandName === "전적카드"){
-        nick = int.options.getString("닉네임");
+        let nick = int.options.getString("닉네임");
         if(nick.includes("#") === false) {
             let embed = new MessageEmbed()
                 .setTitle(":x:  ERROR :x: ")
@@ -63,9 +67,27 @@ client.on('interactionCreate', int => {
     }
 
     if(int.commandName === "맵") {
-        map = int.command.options[0].choices
-        console.log(map)
+        let map_name = int.options.getString("맵")
+        map(map_name, int)
     }
+
+    if(int.commandName === "무기") {
+        let weapon_name = int.options.getString("무기")
+        weapon(weapon_name, int)
+    }
+
+    if(int.commandName === "요원") {
+        let unit_name = int.options.getString("요원")
+        unit(unit_name, int)
+    }
+
+    if(int.commandName === "패치노트") {
+        patchnote(int)
+    }
+
+} catch(err) {
+    console.log(err)
+}
 
 })
 

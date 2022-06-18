@@ -1,18 +1,6 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-async function record_nomarl() {
-    const getHtml = async () => {
-        try {
-            let encoded = encodeURIComponent(`#`)
-            let encoded_name = encodeURI(`${players_name}`) + encoded + encodeURI(`${players_tag}`)
-            return axios.get(`https://tracker.gg/valorant/profile/riot/${encoded_name}/overview?playlist=unrated`)
-        } catch (error) {
-            console.error(error);
-        }
-    };
-}
-
 const data = {
     rank: async (players_name, players_tag) => {
         return new Promise(function(resolve, reject) {
@@ -21,15 +9,10 @@ const data = {
 
             const getHtml = async () => {
                 try {
-                    return axios.get(`https://tracker.gg/valorant/profile/riot/${encoded_name}/overview`).catch(function (error) {
+                    return axios.get(`https://tracker.gg/valorant/profile/riot/${encoded_name}/overview?playlist=competitive`).catch(function (error) {
                         if (error.response) {
                             resolve(error.response.status)
-                        } else if (error.request) {
-                          return console.log(error.request);
-                        } else {
-                          return console.log('Error', error.message);
                         }
-                        return console.log(error.config);
                       });
                 } catch (error) {
                     console.error(error);
@@ -43,7 +26,7 @@ const data = {
                 const data = {
                     user_info: {
                         nickname: `${players_name}#${players_tag}`,
-                        profile_url: `https://tracker.gg/valorant/profile/riot/${encoded_name}/overview`,
+                        profile_url: `https://tracker.gg/valorant/profile/riot/${encoded_name}/overview?playlist=competitive`,
                         profile_image: $('#app > div.trn-wrapper > div.trn-container > div > main > div.content.no-card-margin > div.ph > div.ph__container > div.ph-avatar > svg > image').attr('href')
                     },
                     record: {

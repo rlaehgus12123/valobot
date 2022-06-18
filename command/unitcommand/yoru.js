@@ -2,11 +2,7 @@ const { MessageEmbed } = require('discord.js')
 const Discord = require('discord.js')
 const { MessageAttachment: Attachment } = require('discord.js')
 
-module.exports = {
-    name: "yoru",
-    aliases: ["요루"],
-    description: "국적 : :flag_jp: 일본\n역할: 타격대\n능력: 차원 이동",
-    execute(message) {
+async function yoru(int) {
 
         const unitskins = {
             C: {
@@ -41,7 +37,9 @@ module.exports = {
     .addField(`${unitQ.emoji}**기습 (Q)**`, unitQ.text)
     .addField(`${unitE.emoji}**관문 충돌 (E)**`, unitE.text)
     .addField(`${unitX.emoji}**차원 표류 (X)**`, unitX.text)
-    message.channel.send({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+    int.reply({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+}
 
-    }
+module.exports = {
+    yoru
 }

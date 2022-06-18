@@ -2,11 +2,7 @@ const { MessageEmbed } = require('discord.js')
 const Discord = require('discord.js')
 const { MessageAttachment: Attachment } = require('discord.js')
 
-module.exports = {
-    name: "breach",
-    aliases: "브리치",
-    description: "국적 : :flag_se: 스웨덴\n역할: 척후대",
-    execute(message) {
+async function breach(int) {
 
     const unitskins = {
         C: {
@@ -42,6 +38,9 @@ module.exports = {
      .addField(`${unitQ.emoji}**섬광 폭발 (Q)**`, unitQ.text)
      .addField(`${unitE.emoji}**균열 (E)**`, unitE.text)
      .addField(`${unitX.emoji}**지진 강타 (X)**`, unitX.text)
-    message.channel.send({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
-    }
+    int.reply({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+}
+
+module.exports = {
+    breach
 }

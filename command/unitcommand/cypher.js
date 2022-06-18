@@ -2,12 +2,8 @@ const { MessageEmbed } = require('discord.js')
 const Discord = require('discord.js')
 const { MessageAttachment: Attachment } = require('discord.js')
 
-module.exports = {
-    name: "cypher",
-    aliases: ["사이퍼"],
-    description: "국적 : :flag_ma: 모로코\n역할: 감시자",
-    execute(message) {
-      
+async function cypher(int) {
+
         const unitskins = {
             C: {
              text: "가격: 200 | 충전량: 2\n함정에 걸린 적은 장치를 파괴하지 않으면 위치가 발각되며 멍 때리게 됩니다.\n해당 함정은 회수하여 재설치가 가능합니다.",
@@ -41,8 +37,9 @@ module.exports = {
          .addField(`${unitQ.emoji}**사이퍼 감옥 (Q)**`, unitQ.text)
          .addField(`${unitE.emoji}**스파이캠 (E)**`, unitE.text)
          .addField(`${unitX.emoji}**신경 절도 (X)**`, unitX.text)
-    message.channel.send({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
-    
+        int.reply({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+}
 
-    }
+module.exports = {
+    cypher
 }

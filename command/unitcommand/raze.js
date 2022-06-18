@@ -2,11 +2,7 @@ const { MessageEmbed } = require('discord.js')
 const Discord = require('discord.js')
 const { MessageAttachment: Attachment } = require('discord.js')
 
-module.exports = {
-    name: "raze",
-    aliases: ["레이즈"],
-    description: "국적 : :flag_br: 브라질\n역할: 타격대\n능력: 폭파 및 화력지원",
-    execute(message) {
+async function raze(int) {
 
         const unitskins = {
             C: {
@@ -41,7 +37,9 @@ module.exports = {
     .addField(`${unitQ.emoji}**폭발 팩 (Q)**`, unitQ.text)
     .addField(`${unitE.emoji}**페인트 탄 (E)**`, unitE.text)
     .addField(`${unitX.emoji}**대미 장식 (X)**`, unitX.text)
-    message.channel.send({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+    int.reply({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+}
 
-    }
+module.exports = {
+    raze
 }

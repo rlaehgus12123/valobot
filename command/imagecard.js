@@ -7,6 +7,7 @@ const { MessageAttachment: Attachment } = require('discord.js')
 const data = require('./module/module.js')
 
 async function imagecard(nickname, int = require(Interaction)) {
+  try {
     let name_tag = await arguments[0].split("#")
 
         let embed = new MessageEmbed()
@@ -71,6 +72,14 @@ async function imagecard(nickname, int = require(Interaction)) {
             .setColor(`0x2F3136`)
             .setDescription("사진이 발급 되었습니다.!")
         int.editReply({embeds: [embed1], files: [attachment]})
+      } catch (err) {
+        console.log(err)
+        var embed = new MessageEmbed()
+        .setTitle(":x:  ERROR :x: ")
+        .setColor("RED")
+        .setDescription(`${err}`)
+        int.editReply({embeds: [embed]})
+      }
 }
 
 module.exports = {

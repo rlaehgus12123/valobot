@@ -2,11 +2,7 @@ const { MessageEmbed } = require('discord.js')
 const Discord = require('discord.js')
 const { MessageAttachment: Attachment } = require('discord.js')
 
-module.exports = {
-    name: "brimstone",
-    aliases: ["브림스톤"],
-    description: "국적 : :flag_us: 미국\n역할: 전략가",
-    execute(message) {
+async function brimstone(int) {
 
         const unitskins = {
             C: {
@@ -41,6 +37,9 @@ module.exports = {
      .addField(`${unitQ.emoji}**소이탄 (Q)**`, unitQ.text)
      .addField(`${unitE.emoji}**공중 연막 (E)**`, unitE.text)
      .addField(`${unitX.emoji}**궤도 일격 (X)**`, unitX.text)
-    message.channel.send({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
-    }
+    int.reply({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+}
+
+module.exports = {
+    brimstone
 }

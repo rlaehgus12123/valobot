@@ -1,11 +1,7 @@
 const { MessageEmbed } = require('discord.js')
 const { MessageAttachment: Attachment } = require('discord.js')
 
-module.exports = {
-    name: "neon",
-    aliases: ["네온"],
-    description: "국적 : :flag_ph: 필리핀\n역할: 타격대\n능력: 전기",
-    execute(message) {
+async function neon(int) {
         
         const unitskins = {
             C: {
@@ -40,6 +36,9 @@ module.exports = {
     .addField(`${unitQ.emoji}**릴레이 볼트 (Q)**`, unitQ.text)
     .addField(`${unitE.emoji}**고속 기어 (E)**`, unitE.text)
     .addField(`${unitX.emoji}**오버드라이브 (X)**`, unitX.text)
-    message.channel.send({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
-    }
+    int.reply({embeds: [embed], files: [attachment]}).catch(err => { if(err){ console.log(err) } });
+}
+
+module.exports = {
+    neon
 }
